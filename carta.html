@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css"   rel="stylesheet" href="styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>carts</title>
+</head>
+<body onload="cart();">
+    <div> <h2>Elija sus productos:</h2></div>
+    <table class="nopunt" id="tabla" >
+        <tr>
+            <td colspan="3" class="seccion"> <span class="seccion" id="ent">Entrantes:</span> </td>
+        </tr>
+        <tr>
+            <td class="plato">Jamón ibérico</td>
+            <td class="precio">12€</td>
+            <td ><button id="00" class="botono">+</button></td>
+            <td ><button id="20" class="botono botonpocho">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Ensaladilla rusa</td>
+            <td class="precio">10€</td>
+            <td ><button id="01" class="botono">+</button></td>
+            <td ><button id="21" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Croquetas</td>
+            <td class="precio">8€</td>
+            <td ><button id="02" class="botono">+</button></td>
+            <td ><button id="22" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="seccion"> <span class="seccion">Platos principales:</span> </td>
+        </tr>
+        <tr>
+            <td class="plato">Filete de ternera</td>
+            <td class="precio">18€</td>
+            <td ><button id="03" class="botono">+</button></td>
+            <td ><button id="23" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Merluza al horno</td>
+            <td class="precio">20€</td>
+            <td ><button id="04" class="botono">+</button></td>
+            <td ><button id="24" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Tartar de salmon y aguacate</td>
+            <td class="precio">15€</td>
+            <td ><button id="05" class="botono">+</button></td>
+            <td ><button id="25" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="seccion"> <span class="seccion">Postres:</span> </td>
+        </tr>
+        <tr>
+            <td class="plato">Tarta de queso</td>
+            <td class="precio">7€</td>
+            <td ><button id="06" class="botono">+</button></td>
+            <td ><button id="26" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Tarta de la abuela</td>
+            <td class="precio">7€</td>
+            <td ><button id="07" class="botono">+</button></td>
+            <td ><button id="27" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Natillas</td>
+            <td class="precio">7€</td>
+            <td ><button id="08" class="botono">+</button></td>
+            <td ><button id="28" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="seccion"> <span class="seccion">Bebidas:</span> </td>
+        </tr>
+        <tr>
+            <td class="plato">Refreso</td>
+            <td class="precio">3.5€</td>
+            <td ><button id="09" class="botono">+</button></td>
+            <td ><button id="29" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Agua</td>
+            <td class="precio">3€</td>
+            <td ><button id="010" class="botono">+</button></td>
+            <td ><button id="30" class="botono">-</button></td>
+        </tr>
+        <tr>
+            <td class="plato">Cerveza</td>
+            <td class="precio">4€</td>
+            <td ><button id="011" class="botono">+</button></td>
+            <td ><button id="31" class="botono">-</button></td>
+        </tr>
+    </table>
+    <div class="listo" id="pediditos" >Pedidos:</div>
+    
+    <ul id="pedprov" class="nopunt">
+
+    </ul>
+    <div class="listo"><button id="conf" class="listo">Confirmar pedido</button></div>
+    <template id="template">
+        <li class="lista listo" class="prepara"  > <span class="letra"> </span>  
+            <!-- <textarea rows="1" cols="10" id="comentario" placeholder="Ingrese comentario" name="comentario"></textarea>
+            <button type="button" id="nota">Enviar </button> -->
+        </li>
+    </template>
+    <template id="template-prep">
+        <li class="lista listo" class="prepara"  > <span class="letra"> </span>  
+
+        </li>
+    </template>
+    <template id="template-ent">
+        <li class="lista listo" class="prepara"  > <span class="letra"> </span>  
+            
+        </li>
+    </template>
+    <script src="proyeapp.js"> </script>
+</body>
+</html>
+<!-- <div> 
+    <input value="" type="text" id="nombre" name="nombre" placeholder="Paquito"/>
+</div>
+<div>
+    
+    <textarea rows="1" cols="10" class="comentario" placeholder="Ingrese comentario" name="comentario"></textarea>
+    <button type="button" id="nota">Enviar </button>
+</div>
+ -->
