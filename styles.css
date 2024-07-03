@@ -1,6 +1,6 @@
-.botonpocho {
+/* .botonpocho {
     background-color: #828282;
-}
+} */
 .clon {
     display: inline;
     width: 500px;
@@ -29,11 +29,7 @@
     
     text-align: center;
 }
-/* .listo {
-    margin:0 auto;
-    
-    text-align: center;
-} */
+
 .mesabot:hover{
     background-color: #828282;
 }
@@ -60,7 +56,7 @@
     
 } */
 .seccion{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 h2 {
     margin:0 600px;

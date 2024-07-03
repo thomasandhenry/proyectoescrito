@@ -1,7 +1,13 @@
 console.log('calvo');
 let a =[4,2];
 let b= [5,3];
+let c=0;
 let contar;
+for (contar=0;contar<2;contar++) {
+   c=c+a[contar]*b[contar];
+}
+console.log(c);
+
 let com;
 
 
@@ -60,6 +66,12 @@ let pedidosdef=[
    [0,0,0,0,0,0,0,0,0,0,0,0],
    [0,0,0,0,0,0,0,0,0,0,0,0]
 ];
+let total=[0,0,0,0,0,0,0,0,0,0,0,0];
+let cartas=[{nombre:"Jamón ibérico",precio:12},{nombre:"Ensaladilla rusa",precio:10},{nombre:"Croquetas",precio:8},
+   {nombre:"Filete de ternera",precio:18},{nombre:"Merluza al horno",precio:20},{nombre:"Tartar de salmon y aguacate",precio:15},
+   {nombre:"Tarta de queso",precio:7},{nombre:"Tarta de la abuela",precio:7},{nombre:"Natillas",precio:7},
+   {nombre:"Refresco",precio:3.5},{nombre:"Agua",precio:3},{nombre:"Cerveza",precio:4}]
+
 let carta= ["Jamón ibérico","Ensaladilla rusa","Croquetas",
    "Filete de ternera","Merluza al horno","Tartar de salmon y aguacate",
    "Tarta de queso","Tarta de la abuela","Natillas",
@@ -73,6 +85,8 @@ let reiniciar= document.getElementById("reiniciar").onclick= function(e){
    localStorage.setItem("pedidos",pedidosJSON);
    let matnotasJSON=JSON.stringify(matnotas);
    localStorage.setItem("matnotas",matnotasJSON);
+   let totalJSON=JSON.stringify(total);
+   localStorage.setItem("total",totalJSON);
    
    
 };
@@ -152,6 +166,7 @@ function elegirMesa (mm) {
 
 console.log(pedidos);
 function cart() {
+   
    let pedidosJSON=localStorage.getItem("pedidos");
    let pedidos=JSON.parse(pedidosJSON);
    let pedidosdefJSON=localStorage.getItem("pedidosdef");
@@ -159,11 +174,16 @@ function cart() {
    let pedidosentJSON=localStorage.getItem("pedidosent");
    let pedidosent=JSON.parse(pedidosentJSON);
    let mesa=parseFloat(localStorage.getItem("mesa"));
+   let totalJSON=localStorage.getItem("total");
+   let total=JSON.parse(totalJSON);
+   console.log(total);
    let mn;
    let pn;
    console.log('ent'+pedidosent);
    let p=0;
+   let pt=0;
    let pedconfs=' ';
+   let totalo=document.getElementById("total");
    
 
 
@@ -172,6 +192,7 @@ function cart() {
    let conf= document.getElementById("conf").onclick= function(e){
       for (contar=0;contar<12;contar++) {
          pedidosdef[mesa][contar]=pedidosdef[mesa][contar]+pedidos[mesa][contar];
+         
       }
       
       
@@ -186,11 +207,19 @@ function cart() {
          span.classList.remove('lista');
      }); */
      pedconfs=pedprov.innerHTML;
-     
+     for (pt=0;pt<12;pt++) {
+      total[mesa]=total[mesa]+pedidos[mesa][pt]*cartas[pt].precio;
+
+      
+   }
      
      pedidos[mesa]=
       [0,0,0,0,0,0,0,0,0,0,0,0];
      console.log(pedidos);
+    
+     totalo.textContent='Total: '+total[mesa]+'€';
+      let totalJSON=JSON.stringify(total);
+      localStorage.setItem("total",totalJSON); 
      print();
    };
 
@@ -227,7 +256,7 @@ function cart() {
             }
             }         
       }
-      e.stopPropagation();
+      
    }
 
 
@@ -236,7 +265,7 @@ function cart() {
         pedprov.textContent=' ';
         for (p=0;p<12;p++) {           
             if (pedidosent[mesa][p]>0)  {
-                template_ent.querySelector('.letra').textContent=carta[p]+" x"+pedidosent[mesa][p]+' Entregado';                
+                template_ent.querySelector('.letra').textContent=cartas[p].nombre+" x"+pedidosent[mesa][p]+' Entregado';                
                 let clonent=template_ent.cloneNode(true);
                 fragmento_ent.appendChild(clonent);
 
@@ -245,14 +274,14 @@ function cart() {
        }
        for (p=0;p<12;p++) {           
          if (pedidosdef[mesa][p]>0)  {
-             template_prep.querySelector('.letra').textContent=carta[p]+" x"+pedidosdef[mesa][p]+' Preparando...';                
+             template_prep.querySelector('.letra').textContent=cartas[p].nombre+" x"+pedidosdef[mesa][p]+' Preparando...';                
              let clondef=template_prep.cloneNode(true);
              fragmento_prep.appendChild(clondef);
          }
       }
       for (p=0;p<12;p++) {           
          if (pedidos[mesa][p]>0)  {
-             template.querySelector('.letra').textContent=carta[p]+" x"+pedidos[mesa][p];
+             template.querySelector('.letra').textContent=cartas[p].nombre+" x"+pedidos[mesa][p];
              let nota=document.createElement('textarea');
              console.log('aaa');
              nota.rows=1;
@@ -268,6 +297,7 @@ function cart() {
              envnota.classList.add('envnota');
              envnota.classList.add('listo'); 
              let clon=template.cloneNode(true);
+             let notaenv=document.createElement('span');
              clon.appendChild(nota);
              clon.appendChild(envnota);
              fragmento.appendChild(clon);
@@ -285,6 +315,7 @@ function cart() {
         let pedidosJSON=JSON.stringify(pedidos);
         localStorage.setItem("pedidos",pedidosJSON);
         console.log(pedidos);
+        totalo.textContent='Total: '+total[mesa]+'€';
     }
 /*     let nota= document.getElementById("nota").onclick= function(e){
       com=document.querySelector('.comentario').value; 
@@ -311,6 +342,8 @@ function cart() {
       matnotasJSON=JSON.stringify(matnotas);
       localStorage.setItem("matnotas",matnotasJSON);
       console.log(matnotas);
+      e.target.textContent='Nota enviada';
+      
 
 
    }
@@ -369,7 +402,7 @@ function cocin()
                   
               }); */
               let lis=document.createElement('li');
-                  lis.textContent=carta[p]+" x"+pedidosdef[mesa][p];
+                  lis.textContent=cartas[p].nombre+" x"+pedidosdef[mesa][p];
                   let elim=document.createElement('button');
                 
                 elim.classList.add(mesa);                
